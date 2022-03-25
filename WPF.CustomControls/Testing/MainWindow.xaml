@@ -10,5 +10,16 @@
     <Grid Background="#FF1F1F1F">
         <cc:WatermarkTextBox Watermark="My watermark text" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200" />
         <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,30,0,0" />
+        <cc:ZoomableListBox Margin="5,60,5,5">
+            <ListBoxItem>
+                One
+            </ListBoxItem>
+            <ListBoxItem>
+                Two
+            </ListBoxItem>
+            <ListBoxItem>
+                Three
+            </ListBoxItem>
+        </cc:ZoomableListBox>
     </Grid>
 </Window>
