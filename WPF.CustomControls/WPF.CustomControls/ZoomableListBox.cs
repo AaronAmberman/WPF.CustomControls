@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 namespace WPF.CustomControls
 {
-    /// <summary>A ListView that has built in zooming capabilities.</summary>
+    /// <summary>A ListBox that has built in zooming capabilities.</summary>
     [TemplatePart(Name = "PART_ItemsPresenter", Type = typeof(ItemsPresenter))]
     [TemplatePart(Name = "PART_ResetZoom", Type = typeof(Button))]
     public class ZoomableListBox : ListBox, IDisposable
@@ -21,7 +21,7 @@ namespace WPF.CustomControls
 
         #region Properties
 
-        /// <summary>Gets or sets the zoom factor for the list view. Minimum is 0.5 and maximum is 2.0. Default is 1.0.</summary>
+        /// <summary>Gets or sets the zoom factor for the ListBox. Default is 1.0.</summary>
         public double ZoomFactor
         {
             get { return (double)GetValue(ZoomFactorProperty); }
@@ -41,7 +41,7 @@ namespace WPF.CustomControls
         public static readonly DependencyProperty ZoomMaxProperty =
             DependencyProperty.Register("ZoomMax", typeof(double), typeof(ZoomableListBox), new PropertyMetadata(2.0));
 
-        /// <summary>Gets or sets the max zoom factor. Default is 0.5.</summary>
+        /// <summary>Gets or sets the min zoom factor. Default is 0.5.</summary>
         public double ZoomMin
         {
             get { return (double)GetValue(ZoomMinProperty); }
