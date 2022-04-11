@@ -1,10 +1,10 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace WPF.CustomControls
 {
-    /// <summary>A normal Button with a CornerRadius Property.</summary>
-    public class RoundableButton : Button
+    /// <summary>A normal ToggleButton with a CornerRadius Property.</summary>
+    public class RoundableToggleButton : ToggleButton
     {
         #region Properties
 
@@ -16,15 +16,15 @@ namespace WPF.CustomControls
         }
 
         public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(RoundableButton), new PropertyMetadata(null));
+            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(RoundableToggleButton), new PropertyMetadata(null));
 
         #endregion
 
         #region Constructors
 
-        static RoundableButton()
+        static RoundableToggleButton()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(RoundableButton), new FrameworkPropertyMetadata(typeof(RoundableButton)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(RoundableToggleButton), new FrameworkPropertyMetadata(typeof(RoundableToggleButton)));
         }
 
         #endregion

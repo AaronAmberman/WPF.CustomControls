@@ -9,10 +9,9 @@
         Title="MainWindow" Height="768" Width="1024" WindowStartupLocation="CenterScreen">
     <Grid Background="#FF1F1F1F">
         <cc:WatermarkTextBox Watermark="My watermark text" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200" />
-        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,30,0,0" />
-        <cc:RoundableButton Content="ABC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="55,27,0,0" CornerRadius="20" Padding="5" />
-        <cc:PopupExpander HorizontalAlignment="Left" VerticalAlignment="Top" Margin="105,30,0,0"
-                          ExpandDirection="Right">
+        <cc:RoundableButton Content="ABC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,27,0,0" CornerRadius="20" Padding="5" />
+        <cc:PopupExpander HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,30,0,0"
+                          ExpandDirection="Right" PopupStaysOpen="False">
             <cc:PopupExpander.Header>
                 <TextBlock Text="Expander w/ Popup">
                     <TextBlock.LayoutTransform>
@@ -21,12 +20,12 @@
                 </TextBlock>
             </cc:PopupExpander.Header>
             <Border Background="#FFDDDDDD" BorderBrush="#FF707070" BorderThickness="1">
-                <Grid>
-                    <TextBlock Text="Some other simple content" />
+                <Grid Margin="5">
+                    <TextBlock Text="Some simple content" />
                 </Grid>
             </Border>
         </cc:PopupExpander>
-        <cc:ZoomableListBox Margin="5,150,5,5">
+        <cc:ZoomableListBox Margin="50,200,50,50">
             <ListBoxItem>
                 One
             </ListBoxItem>
@@ -37,5 +36,57 @@
                 Three
             </ListBoxItem>
         </cc:ZoomableListBox>
+        <cc:GridSplitterPopupExpander HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" 
+                                      ExpandDirection="Down" PopupStaysOpen="False" PopupMinimumHeight="45" PopupMaximumHeight="600">
+            <cc:GridSplitterPopupExpander.Header>
+                <TextBlock Text="Resizable Expander w/ Popup" />
+            </cc:GridSplitterPopupExpander.Header>
+            <Border Background="#FFDDDDDD" BorderBrush="#FF707070" BorderThickness="1">
+                <Grid Margin="5">
+                    <TextBlock Text="Some simple content" />
+                </Grid>
+            </Border>
+        </cc:GridSplitterPopupExpander>
+        <cc:GridSplitterPopupExpander HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,250,0,0" 
+                                      ExpandDirection="Right" PopupStaysOpen="False" PopupMinimumWidth="125" PopupMaximumWidth="600">
+            <cc:GridSplitterPopupExpander.Header>
+                <TextBlock Text="Resizable Expander w/ Popup">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="90" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </cc:GridSplitterPopupExpander.Header>
+            <Border Background="#FFDDDDDD" BorderBrush="#FF707070" BorderThickness="1">
+                <Grid Margin="5">
+                    <TextBlock Text="Some simple content" />
+                </Grid>
+            </Border>
+        </cc:GridSplitterPopupExpander>
+        <cc:GridSplitterPopupExpander HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,250,0,0" 
+                                      ExpandDirection="Left" PopupStaysOpen="False" PopupMinimumWidth="125" PopupMaximumWidth="600">
+            <cc:GridSplitterPopupExpander.Header>
+                <TextBlock Text="Resizable Expander w/ Popup">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="90" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </cc:GridSplitterPopupExpander.Header>
+            <Border Background="#FFDDDDDD" BorderBrush="#FF707070" BorderThickness="1">
+                <Grid Margin="5">
+                    <TextBlock Text="Some simple content" />
+                </Grid>
+            </Border>
+        </cc:GridSplitterPopupExpander>
+        <cc:GridSplitterPopupExpander HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0" 
+                                      ExpandDirection="Up" PopupStaysOpen="False" PopupMinimumHeight="45" PopupMaximumHeight="600">
+            <cc:GridSplitterPopupExpander.Header>
+                <TextBlock Text="Resizable Expander w/ Popup" />
+            </cc:GridSplitterPopupExpander.Header>
+            <Border Background="#FFDDDDDD" BorderBrush="#FF707070" BorderThickness="1">
+                <Grid Margin="5">
+                    <TextBlock Text="Some simple content" />
+                </Grid>
+            </Border>
+        </cc:GridSplitterPopupExpander>
     </Grid>
 </Window>
