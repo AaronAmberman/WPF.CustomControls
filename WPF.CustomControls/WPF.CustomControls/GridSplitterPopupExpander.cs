@@ -13,10 +13,14 @@ namespace WPF.CustomControls
     /// 2. PopupMaximumHeight
     /// 3. PopupPreferredHeight
     /// 
+    /// Suggestion is to let the popup manage the height and you should manage the width of your content yourself.
+    /// 
     /// ExpandDirection = Left || ExpandDirection = Right the properties you should be targeting are
     /// 1. PopupMinimumWidth
     /// 2. PopupMaximumWidth
     /// 3. PopupPreferredWidth
+    /// 
+    /// Suggestion is to let the popup manage the width and you should manage the height of your content yourself.
     /// </remarks>
     public class GridSplitterPopupExpander : PopupExpander
     {
