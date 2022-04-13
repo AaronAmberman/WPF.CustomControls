@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WPF.CustomControls
 {
@@ -81,7 +70,7 @@ namespace WPF.CustomControls
             return baseValue;
         }
 
-        /// <summary>Gets or sets the minimum height for the popup. Default is double.PositiveInfinity.</summary>
+        /// <summary>Gets or sets the minimum height for the popup. Default is 0.0.</summary>
         public double PopupMinimumHeight
         {
             get { return (double)GetValue(PopupMinimumHeightProperty); }
@@ -90,7 +79,7 @@ namespace WPF.CustomControls
 
         public static readonly DependencyProperty PopupMinimumHeightProperty =
             DependencyProperty.Register("PopupMinimumHeight", typeof(double), typeof(GridSplitterPopupExpander), 
-                new PropertyMetadata(double.PositiveInfinity, null, CoercePopupMinimumHeight));
+                new PropertyMetadata(0.0, null, CoercePopupMinimumHeight));
 
         private static object CoercePopupMinimumHeight(DependencyObject d, object baseValue)
         {
@@ -101,7 +90,7 @@ namespace WPF.CustomControls
             return baseValue;
         }
 
-        /// <summary>Gets or sets the minimum width for the popup. Default is double.PositiveInfinity.</summary>
+        /// <summary>Gets or sets the minimum width for the popup. Default is 0.0.</summary>
         public double PopupMinimumWidth
         {
             get { return (double)GetValue(PopupMinimumWidthProperty); }
@@ -110,7 +99,7 @@ namespace WPF.CustomControls
 
         public static readonly DependencyProperty PopupMinimumWidthProperty =
             DependencyProperty.Register("PopupMinimumWidth", typeof(double), typeof(GridSplitterPopupExpander), 
-                new PropertyMetadata(double.PositiveInfinity, null, CoercePopupMinimumWidth));
+                new PropertyMetadata(0.0, null, CoercePopupMinimumWidth));
 
         private static object CoercePopupMinimumWidth(DependencyObject d, object baseValue)
         {
@@ -120,6 +109,26 @@ namespace WPF.CustomControls
 
             return baseValue;
         }
+
+        /// <summary>Gets or sets the preferred height when rendering the popup content.</summary>
+        public double PopupPreferredHeight
+        {
+            get { return (double)GetValue(PopupPreferredHeightProperty); }
+            set { SetValue(PopupPreferredHeightProperty, value); }
+        }
+
+        public static readonly DependencyProperty PopupPreferredHeightProperty =
+            DependencyProperty.Register("PopupPreferredHeight", typeof(double), typeof(GridSplitterPopupExpander), new PropertyMetadata(-1.0));
+
+        /// <summary>Gets or sets the preferred width when rendering the popup content.</summary>
+        public double PopupPreferredWidth
+        {
+            get { return (double)GetValue(PopupPreferredWidthProperty); }
+            set { SetValue(PopupPreferredWidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty PopupPreferredWidthProperty =
+            DependencyProperty.Register("PopupPreferredWidth", typeof(double), typeof(GridSplitterPopupExpander), new PropertyMetadata(-1.0));
 
         #endregion
 

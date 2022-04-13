@@ -15,7 +15,9 @@
             </Setter.Value>
         </Setter>
     </Style>-->
-    
+
+    <local:NotEqualsConverter x:Key="NotEqualsConverter" />
+
     <Style TargetType="{x:Type local:WatermarkTextBox}">
         <Setter Property="Background" Value="#FFFFFFFF"/>
         <Setter Property="BorderBrush" Value="#FFABADB3"/>
@@ -362,12 +364,16 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Right" />
-                                <Condition Property="PopupMinimumWidth" Value="{x:Static sys:Double.PositiveInfinity}" />
-                                <Condition Property="PopupMaximumWidth" Value="{x:Static sys:Double.PositiveInfinity}" />
-                            </MultiTrigger.Conditions>
+                        <!-- 
+                            Right 
+                        -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Right" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Left" />
                             <Setter TargetName="ColumnDefinition2" Property="Width" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Column" Value="0" />
@@ -375,12 +381,13 @@
                             <Setter TargetName="GridSplitter" Property="Width" Value="3" />
                             <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
                             <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Right" />
-                                <Condition Property="PopupMinimumWidth" Value="{x:Static sys:Double.PositiveInfinity}" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Right" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Left" />
                             <Setter TargetName="ColumnDefinition2" Property="Width" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Column" Value="0" />
@@ -389,12 +396,13 @@
                             <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
                             <Setter TargetName="ColumnDefinition0" Property="MaxWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumWidth}" />
                             <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Right" />
-                                <Condition Property="PopupMaximumWidth" Value="{x:Static sys:Double.PositiveInfinity}" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Right" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Left" />
                             <Setter TargetName="ColumnDefinition2" Property="Width" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Column" Value="0" />
@@ -403,11 +411,12 @@
                             <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
                             <Setter TargetName="ColumnDefinition0" Property="MinWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumWidth}" />
                             <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Right" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Right" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Left" />
                             <Setter TargetName="ColumnDefinition2" Property="Width" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Column" Value="0" />
@@ -417,13 +426,81 @@
                             <Setter TargetName="ColumnDefinition0" Property="MinWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumWidth}" />
                             <Setter TargetName="ColumnDefinition0" Property="MaxWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumWidth}" />
                             <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Up" />
-                                <Condition Property="PopupMinimumHeight" Value="{x:Static sys:Double.PositiveInfinity}" />
-                                <Condition Property="PopupMaximumHeight" Value="{x:Static sys:Double.PositiveInfinity}" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Right" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Left" />
+                            <Setter TargetName="ColumnDefinition2" Property="Width" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="ColumnDefinition0" Property="Width" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Column" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Right" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Left" />
+                            <Setter TargetName="ColumnDefinition2" Property="Width" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="ColumnDefinition0" Property="Width" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Column" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
+                            <Setter TargetName="ColumnDefinition0" Property="MaxWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Right" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Left" />
+                            <Setter TargetName="ColumnDefinition2" Property="Width" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="ColumnDefinition0" Property="Width" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Column" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
+                            <Setter TargetName="ColumnDefinition0" Property="MinWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Right" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Left" />
+                            <Setter TargetName="ColumnDefinition2" Property="Width" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="ColumnDefinition0" Property="Width" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Column" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
+                            <Setter TargetName="ColumnDefinition0" Property="MinWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumWidth}" />
+                            <Setter TargetName="ColumnDefinition0" Property="MaxWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
+                        </MultiDataTrigger>
+                        <!-- 
+                            Up 
+                        -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Up" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Top" />
                             <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Row" Value="2" />
@@ -431,26 +508,13 @@
                             <Setter TargetName="GridSplitter" Property="Height" Value="3" />
                             <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
                             <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Up" />
-                                <Condition Property="PopupMaximumHeight" Value="{x:Static sys:Double.PositiveInfinity}" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="ContentPopup" Property="Placement" Value="Top" />
-                            <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
-                            <Setter TargetName="ExpandSite" Property="Grid.Row" Value="2" />
-                            <Setter TargetName="GridSplitter" Property="Grid.Row" Value="1" />
-                            <Setter TargetName="GridSplitter" Property="Height" Value="3" />
-                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
-                            <Setter TargetName="RowDefinition2" Property="MinHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumHeight}" />
-                            <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Up" />
-                                <Condition Property="PopupMinimumHeight" Value="{x:Static sys:Double.PositiveInfinity}" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Up" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Top" />
                             <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Row" Value="2" />
@@ -459,11 +523,27 @@
                             <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
                             <Setter TargetName="RowDefinition2" Property="MaxHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumHeight}" />
                             <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Up" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Up" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Top" />
+                            <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Row" Value="2" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
+                            <Setter TargetName="RowDefinition2" Property="MinHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Up" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Top" />
                             <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Row" Value="2" />
@@ -473,13 +553,81 @@
                             <Setter TargetName="RowDefinition2" Property="MinHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumHeight}" />
                             <Setter TargetName="RowDefinition2" Property="MaxHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumHeight}" />
                             <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Left" />
-                                <Condition Property="PopupMinimumWidth" Value="{x:Static sys:Double.PositiveInfinity}" />
-                                <Condition Property="PopupMaximumWidth" Value="{x:Static sys:Double.PositiveInfinity}" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Up" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Top" />
+                            <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Row" Value="2" />
+                            <Setter TargetName="RowDefinition2" Property="Height" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Up" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Top" />
+                            <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Row" Value="2" />
+                            <Setter TargetName="RowDefinition2" Property="Height" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
+                            <Setter TargetName="RowDefinition2" Property="MaxHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Up" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Top" />
+                            <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Row" Value="2" />
+                            <Setter TargetName="RowDefinition2" Property="Height" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
+                            <Setter TargetName="RowDefinition2" Property="MinHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Up" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Top" />
+                            <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Row" Value="2" />
+                            <Setter TargetName="RowDefinition2" Property="Height" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
+                            <Setter TargetName="RowDefinition2" Property="MinHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumHeight}" />
+                            <Setter TargetName="RowDefinition2" Property="MaxHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
+                        </MultiDataTrigger>
+                        <!-- 
+                            Left
+                        -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Left" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Right" />
                             <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Column" Value="2" />
@@ -487,12 +635,13 @@
                             <Setter TargetName="GridSplitter" Property="Width" Value="3" />
                             <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
                             <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Left" />
-                                <Condition Property="PopupMinimumWidth" Value="{x:Static sys:Double.PositiveInfinity}" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Left" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Right" />
                             <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Column" Value="2" />
@@ -501,12 +650,13 @@
                             <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
                             <Setter TargetName="ColumnDefinition2" Property="MaxWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumWidth}" />
                             <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Left" />
-                                <Condition Property="PopupMaximumWidth" Value="{x:Static sys:Double.PositiveInfinity}" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Left" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Right" />
                             <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Column" Value="2" />
@@ -515,11 +665,12 @@
                             <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
                             <Setter TargetName="ColumnDefinition2" Property="MinWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumWidth}" />
                             <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Left" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Left" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Right" />
                             <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Column" Value="2" />
@@ -529,13 +680,81 @@
                             <Setter TargetName="ColumnDefinition2" Property="MinWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumWidth}" />
                             <Setter TargetName="ColumnDefinition2" Property="MaxWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumWidth}" />
                             <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Down" />
-                                <Condition Property="PopupMinimumHeight" Value="{x:Static sys:Double.PositiveInfinity}" />
-                                <Condition Property="PopupMaximumHeight" Value="{x:Static sys:Double.PositiveInfinity}" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Left" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Right" />
+                            <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Column" Value="2" />
+                            <Setter TargetName="ColumnDefinition2" Property="Width" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Column" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Left" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Right" />
+                            <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Column" Value="2" />
+                            <Setter TargetName="ColumnDefinition2" Property="Width" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Column" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
+                            <Setter TargetName="ColumnDefinition2" Property="MaxWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Left" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Right" />
+                            <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Column" Value="2" />
+                            <Setter TargetName="ColumnDefinition2" Property="Width" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Column" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
+                            <Setter TargetName="ColumnDefinition2" Property="MinWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Left" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredWidth, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Right" />
+                            <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Column" Value="2" />
+                            <Setter TargetName="ColumnDefinition2" Property="Width" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Column" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Columns" />
+                            <Setter TargetName="ColumnDefinition2" Property="MinWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumWidth}" />
+                            <Setter TargetName="ColumnDefinition2" Property="MaxWidth" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumWidth}" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="{Binding ElementName=ContentGrid, Path=ActualHeight}" />
+                        </MultiDataTrigger>
+                        <!-- 
+                            Down 
+                        -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Down" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Bottom" />
                             <Setter TargetName="RowDefinition2" Property="Height" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Row" Value="0" />
@@ -543,26 +762,13 @@
                             <Setter TargetName="GridSplitter" Property="Height" Value="3" />
                             <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
                             <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Down" />
-                                <Condition Property="PopupMaximumHeight" Value="{x:Static sys:Double.PositiveInfinity}" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="ContentPopup" Property="Placement" Value="Bottom" />
-                            <Setter TargetName="RowDefinition2" Property="Height" Value="*" />
-                            <Setter TargetName="ExpandSite" Property="Grid.Row" Value="0" />
-                            <Setter TargetName="GridSplitter" Property="Grid.Row" Value="1" />
-                            <Setter TargetName="GridSplitter" Property="Height" Value="3" />
-                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
-                            <Setter TargetName="RowDefinition0" Property="MinHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumHeight}" />
-                            <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Down" />
-                                <Condition Property="PopupMinimumHeight" Value="{x:Static sys:Double.PositiveInfinity}" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Down" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Bottom" />
                             <Setter TargetName="RowDefinition2" Property="Height" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Row" Value="0" />
@@ -571,11 +777,27 @@
                             <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
                             <Setter TargetName="RowDefinition0" Property="MaxHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumHeight}" />
                             <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="ExpandDirection" Value="Down" />
-                            </MultiTrigger.Conditions>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Down" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Bottom" />
+                            <Setter TargetName="RowDefinition2" Property="Height" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
+                            <Setter TargetName="RowDefinition0" Property="MinHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Down" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight}" Value="-1.0" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="ContentPopup" Property="Placement" Value="Bottom" />
                             <Setter TargetName="RowDefinition2" Property="Height" Value="*" />
                             <Setter TargetName="ExpandSite" Property="Grid.Row" Value="0" />
@@ -585,7 +807,71 @@
                             <Setter TargetName="RowDefinition0" Property="MinHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumHeight}" />
                             <Setter TargetName="RowDefinition0" Property="MaxHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumHeight}" />
                             <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
-                        </MultiTrigger>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Down" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Bottom" />
+                            <Setter TargetName="RowDefinition2" Property="Height" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="RowDefinition0" Property="Height" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Down" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMinimumWidth}" Value="0.0" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Bottom" />
+                            <Setter TargetName="RowDefinition2" Property="Height" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="RowDefinition0" Property="Height" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
+                            <Setter TargetName="RowDefinition0" Property="MaxHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Down" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupMaximumWidth}" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Bottom" />
+                            <Setter TargetName="RowDefinition2" Property="Height" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="RowDefinition0" Property="Height" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
+                            <Setter TargetName="RowDefinition0" Property="MinHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ExpandDirection}" Value="Down" />
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=PopupPreferredHeight, Converter={StaticResource NotEqualsConverter}, ConverterParameter=-1.0}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="ContentPopup" Property="Placement" Value="Bottom" />
+                            <Setter TargetName="RowDefinition2" Property="Height" Value="*" />
+                            <Setter TargetName="ExpandSite" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="RowDefinition0" Property="Height" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupPreferredHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="GridSplitter" Property="Height" Value="3" />
+                            <Setter TargetName="GridSplitter" Property="ResizeDirection" Value="Rows" />
+                            <Setter TargetName="RowDefinition0" Property="MinHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMinimumHeight}" />
+                            <Setter TargetName="RowDefinition0" Property="MaxHeight" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PopupMaximumHeight}" />
+                            <Setter TargetName="GridSplitter" Property="Width" Value="{Binding ElementName=ContentGrid, Path=ActualWidth}" />
+                        </MultiDataTrigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
                         </Trigger>

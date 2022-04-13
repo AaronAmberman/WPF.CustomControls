@@ -37,7 +37,7 @@
             </ListBoxItem>
         </cc:ZoomableListBox>
         <cc:GridSplitterPopupExpander HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" 
-                                      ExpandDirection="Down" PopupStaysOpen="False" PopupMinimumHeight="45" PopupMaximumHeight="600">
+                                      ExpandDirection="Down" PopupStaysOpen="False">
             <cc:GridSplitterPopupExpander.Header>
                 <TextBlock Text="Resizable Expander w/ Popup" />
             </cc:GridSplitterPopupExpander.Header>
@@ -48,7 +48,7 @@
             </Border>
         </cc:GridSplitterPopupExpander>
         <cc:GridSplitterPopupExpander HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,250,0,0" 
-                                      ExpandDirection="Right" PopupStaysOpen="False" PopupMinimumWidth="125" PopupMaximumWidth="600">
+                                      ExpandDirection="Right" PopupStaysOpen="False">
             <cc:GridSplitterPopupExpander.Header>
                 <TextBlock Text="Resizable Expander w/ Popup">
                     <TextBlock.LayoutTransform>
@@ -63,7 +63,7 @@
             </Border>
         </cc:GridSplitterPopupExpander>
         <cc:GridSplitterPopupExpander HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,250,0,0" 
-                                      ExpandDirection="Left" PopupStaysOpen="False" PopupMinimumWidth="125" PopupMaximumWidth="600">
+                                      ExpandDirection="Left" PopupStaysOpen="False">
             <cc:GridSplitterPopupExpander.Header>
                 <TextBlock Text="Resizable Expander w/ Popup">
                     <TextBlock.LayoutTransform>
@@ -78,7 +78,7 @@
             </Border>
         </cc:GridSplitterPopupExpander>
         <cc:GridSplitterPopupExpander HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0" 
-                                      ExpandDirection="Up" PopupStaysOpen="False" PopupMinimumHeight="45" PopupMaximumHeight="600">
+                                      ExpandDirection="Up" PopupStaysOpen="False">
             <cc:GridSplitterPopupExpander.Header>
                 <TextBlock Text="Resizable Expander w/ Popup" />
             </cc:GridSplitterPopupExpander.Header>
