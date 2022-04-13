@@ -5,6 +5,19 @@ using System.Windows.Media;
 namespace WPF.CustomControls
 {
     /// <summary>An Expander that presents its content in a Popup and is resizable.</summary>
+    /// <remarks>
+    /// The popup resizing will work like a normal GridSplitter does, columns and rows. Note that when using...
+    /// 
+    /// ExpandDirection = Down || ExpandDirection = Up the properties you should be targeting are
+    /// 1. PopupMinimumHeight
+    /// 2. PopupMaximumHeight
+    /// 3. PopupPreferredHeight
+    /// 
+    /// ExpandDirection = Left || ExpandDirection = Right the properties you should be targeting are
+    /// 1. PopupMinimumWidth
+    /// 2. PopupMaximumWidth
+    /// 3. PopupPreferredWidth
+    /// </remarks>
     public class GridSplitterPopupExpander : PopupExpander
     {
         #region Properties
