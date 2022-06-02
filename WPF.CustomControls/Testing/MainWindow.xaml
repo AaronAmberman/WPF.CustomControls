@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Testing"
         xmlns:cc="clr-namespace:WPF.CustomControls;assembly=WPF.CustomControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1024" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="768" Width="1024" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
     <Grid Background="#FF1F1F1F">
         <cc:WatermarkTextBox Watermark="My watermark text" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Width="200" />
         <cc:RoundableButton Content="ABC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,27,0,0" CornerRadius="20" Padding="5" />
@@ -25,8 +26,23 @@
                 </Grid>
             </Border>
         </cc:PopupExpander>
-        <cc:ZoomableListBox Margin="50,200,50,50">
-            <ListBoxItem>
+        <cc:ZoomableListBox x:Name="ZoomableListView" Margin="50,200,50,50" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
+            <cc:ZoomableListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <cc:VirtualizingWrapPanel IsItemsHost="True" />
+                    <!--<VirtualizingStackPanel IsItemsHost="True" />-->
+                </ItemsPanelTemplate>
+            </cc:ZoomableListBox.ItemsPanel>
+            <cc:ZoomableListBox.ItemTemplate>
+                <DataTemplate>
+                    <Image Width="146" Height="204">
+                        <Image.Source>
+                            <BitmapImage UriSource="{Binding}" DecodePixelWidth="408" />
+                        </Image.Source>
+                    </Image>
+                </DataTemplate>
+            </cc:ZoomableListBox.ItemTemplate>
+            <!--<ListBoxItem>
                 One
             </ListBoxItem>
             <ListBoxItem>
@@ -34,7 +50,7 @@
             </ListBoxItem>
             <ListBoxItem>
                 Three
-            </ListBoxItem>
+            </ListBoxItem>-->
         </cc:ZoomableListBox>
         <cc:GridSplitterPopupExpander HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" 
                                       ExpandDirection="Down" PopupStaysOpen="False">
