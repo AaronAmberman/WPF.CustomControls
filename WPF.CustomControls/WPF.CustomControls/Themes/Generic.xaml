@@ -16,8 +16,6 @@
         </Setter>
     </Style>-->
 
-    <local:NotEqualsConverter x:Key="NotEqualsConverter" />
-
     <Style TargetType="{x:Type local:WatermarkTextBox}">
         <Setter Property="Background" Value="#FFFFFFFF"/>
         <Setter Property="BorderBrush" Value="#FFABADB3"/>
@@ -307,6 +305,8 @@
         </Setter>
     </Style>
 
+    <local:NotEqualsConverter x:Key="NotEqualsConverter" />
+    
     <Style TargetType="{x:Type local:GridSplitterPopupExpander}">
         <Setter Property="Background" Value="#FFDDDDDD"/>
         <Setter Property="BorderBrush" Value="#FF707070"/>
